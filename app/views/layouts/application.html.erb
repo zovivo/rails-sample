@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>Ourfirstrails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +11,15 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+    <h3>Hello, <%= current_user.email %></h3>
+    <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
+    <hr>
+    <% else %>
+    <%= link_to "ログイン",new_user_session_path %>
+    <%= link_to "ユーザー登録",new_user_registration_path %>
+    <hr>
     <%= yield %>
+    <% end %>
   </body>
 </html>
